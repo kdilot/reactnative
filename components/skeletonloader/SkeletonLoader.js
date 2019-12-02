@@ -1,16 +1,8 @@
-import React from "react";
-import {
-  Placeholder,
-  PlaceholderMedia,
-  PlaceholderLine,
-  Fade,
-  Shine,
-  Loader,
-  Progressive,
-  ShineOverlay
-} from "rn-placeholder";
-import { View, Text, StyleSheet, ScrollView, Dimensions } from "react-native";
-const width = Dimensions.get("window").width;
+import React from 'react'
+import { Placeholder, PlaceholderMedia, PlaceholderLine, Fade, Shine, Loader, Progressive, ShineOverlay } from 'rn-placeholder'
+import { View, StyleSheet, ScrollView, Dimensions } from 'react-native'
+const width = Dimensions.get('window').width
+// import Layout from "constants/Layout"
 
 const ShapeRect = ({ ani = Fade }) => {
   return (
@@ -21,8 +13,8 @@ const ShapeRect = ({ ani = Fade }) => {
         <PlaceholderLine />
       </Placeholder>
     </View>
-  );
-};
+  )
+}
 
 const SkeletonLoader = () => {
   return (
@@ -33,16 +25,10 @@ const SkeletonLoader = () => {
         <ShapeRect ani={Loader} />
         <ShapeRect ani={Progressive} />
         <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
-        <ShapeRect ani={ShineOverlay} />
       </View>
     </ScrollView>
-  );
-};
+  )
+}
 
 const Styles = StyleSheet.create({
   container: {
@@ -55,6 +41,6 @@ const Styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   }
-});
+})
 
-export default SkeletonLoader;
+export default SkeletonLoader
