@@ -1,9 +1,7 @@
-// Home screen
 import React, { Component } from "react";
-//import react in our code.
 import { Text, View } from "react-native";
-//import all the components we are going to use.
 import SkeletonLoader from "../skeletonloader/SkeletonLoader";
+import LoadingPage from "../skeletonloader/LoadingPage";
 
 export default class FirstPage extends React.Component {
     render() {
@@ -15,7 +13,7 @@ export default class FirstPage extends React.Component {
                     alignItems: "center"
                 }}
             >
-                <SkeletonLoader />
+                <LoadingPage />
             </View>
         );
     }
