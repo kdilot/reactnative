@@ -1,24 +1,29 @@
-import React from "reeact";
+import React from "react";
+const url = "http://192.168.10.33:3000";
 
-const url = "";
-const requestCode = async () => {
-    try {
-        return await fetch(url, {
-            // method: "POST",
-            // headers: {
-            //     Accept: "application/json",
-            //     "Content-Type": "application/json"
-            // },
-            // body: JSON.stringify({
-            //     firstParam: "yourValue",
-            //     secondParam: "yourOtherValue"
-            // })
-        }).then(res => {
-            console.log(res);
-        });
-    } catch (e) {
-        console.error(e);
-    }
+const SignUp = async param => {
+    const response = await fetch(`${url}/signup`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(param)
+    });
+
+    return response.json();
+};
+const SignIn = async param => {
+    const response = await fetch(`${url}/login`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(param)
+    });
+
+    return response.json();
 };
 
-export { requestCode };
+export { SignUp, SignIn };

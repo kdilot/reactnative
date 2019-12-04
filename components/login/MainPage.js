@@ -12,6 +12,8 @@ import {
 } from "react-native";
 import { Akira } from "react-native-textinput-effects";
 import InputText from "./InputText";
+import InputBox from "../slice/InputBox";
+import { SignUp, SignIn } from "../../api";
 
 class MainPage extends Component {
     componentDidMount() {
@@ -35,8 +37,10 @@ class MainPage extends Component {
             param.email = email;
             param.name = name;
             param.password = password;
-            console.warn(param);
-            this.props.navigation.navigate("SignIn");
+            SignUp(param).then(res => {
+                if (res.code === 200) this.props.navigation.navigate("SignIn");
+                else if (res.code === 500) console.warn(res);
+            });
         }
     };
 
@@ -91,6 +95,10 @@ class MainPage extends Component {
                         <>
                             <View style={styles.inputBox}>
                                 <InputText />
+                                <InputText />
+                                <InputText />
+                                <InputBox label={"E-mail"} />
+                                <InputBox label={"Password"} />
                                 <Akira
                                     label={"E-mail"}
                                     borderColor={"gray"}

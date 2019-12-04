@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { createSwitchNavigator, createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import MainPage from "../login/MainPage";
-import SignInPage from "../login/SignInPage";
+import SignUpPage from "../login/SignUpPage";
+import IndexPage from "../login/IndexPage";
+import FinishPage from "../login/FinishPage";
 
 class SignInScreen extends React.Component {
     static navigationOptions = {
@@ -124,13 +125,15 @@ const AuthStack = createStackNavigator({ SignIn: SignInScreen });
 export default createAppContainer(
     createSwitchNavigator(
         {
-            Welcome: MainPage,
-            SignIn: SignInPage,
+            // Welcome: MainPage,
+            SignIn: IndexPage,
+            SignUp: SignUpPage,
+            LogOut: FinishPage,
             App: AppStack,
             Auth: AuthStack
         },
         {
-            initialRouteName: "Welcome"
+            initialRouteName: "SignIn"
         }
     )
 );
