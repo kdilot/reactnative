@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { BtnColor, FontColor } from "constants/Color";
 
 class Buttons extends Component {
     render() {
-        const { disabled, label, onPress } = this.props;
+        const { label, onPress } = this.props;
         return (
             <TouchableOpacity
                 style={styles.container}
                 activeOpacity={0.5}
-                disabled={disabled}
                 onPress={() => {
                     onPress && onPress();
                 }}
             >
-                <Text> {label} </Text>
+                <Text style={styles.text}> {label} </Text>
             </TouchableOpacity>
         );
     }
@@ -22,9 +22,11 @@ class Buttons extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        backgroundColor: "#DDDDDD",
-        padding: 10,
-        margin: 10
+        backgroundColor: BtnColor,
+        padding: 10
+    },
+    text: {
+        color: FontColor
     }
 });
 

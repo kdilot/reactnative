@@ -1,8 +1,10 @@
 import React from "react";
-const url = "http://192.168.10.33:3000";
+import { API_URL } from 'react-native-dotenv'
+
+// 이메일 검증 API, 코드 확인 API
 
 const SignUp = async param => {
-    const response = await fetch(`${url}/signup`, {
+    const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: {
             Accept: "application/json",
@@ -14,7 +16,7 @@ const SignUp = async param => {
     return response.json();
 };
 const SignIn = async param => {
-    const response = await fetch(`${url}/login`, {
+    const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {
             Accept: "application/json",

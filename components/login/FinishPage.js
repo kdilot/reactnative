@@ -1,21 +1,29 @@
 import React, { Component } from "react";
-import { Dimensions, View, Text, StyleSheet } from "react-native";
-import Buttons from "../slice/Buttons";
+import {
+    AsyncStorage,
+    View,
+    Text,
+    KeyboardAvoidingView
+} from "react-native";
+import Buttons from "components/slice/Buttons";
+import { DefaultContainerStyle, DefaultViewStyle } from "constants/Style";
 
 class FinishPage extends Component {
     constructor(props) {
         super(props);
-        this.setate = {
+        this.state = {
             userToken: null
         };
     }
     _getToken = async () => {
         await AsyncStorage.getItem("userToken")
             .then(userToken => {
-                this.setState({ userToken });
+                if (!userToken) this.props.navigation.navigate("SignIn");
+                else this.setState({ userToken });
             })
             .catch(e => {
                 Alert.alert("토큰조회에 실패하였습니다.");
+                this.props.navigation.navigate("SignIn");
             });
     };
 
@@ -28,15 +36,21 @@ class FinishPage extends Component {
         }
     };
 
+    componentDidMount() {
+        this._getToken();
+    }
+
     render() {
         return (
             <KeyboardAvoidingView
-                style={styles.container}
+                style={DefaultContainerStyle}
                 behavior="padding"
                 enabled
             >
-                <View style={styles.group}>
-                    <Text>{this.state.userToken}</Text>
+                <View style={DefaultViewStyle}>
+                    <Text style={{ textAlign: "center" }}>
+                        {this.state.userToken}
+                    </Text>
                     <Buttons
                         label={"Sign out"}
                         onPress={() => this._navSignOut()}
@@ -47,16 +61,10 @@ class FinishPage extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
-    },
-    group: {
-        padding: 10,
-        width: Dimensions.get("window").width
-    }
-});
+// const styles = StyleSheet.create({
+//     container: {
+//         ...DefaultContainerStyle
+//     }
+// });
 
 export default FinishPage;

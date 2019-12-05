@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4863766a-b2b3-4ad2-ac91-f765742d08a2" name="Default Changelist" comment="" />
+    <list default="true" id="4863766a-b2b3-4ad2-ac91-f765742d08a2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/FinishPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/FinishPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/IndexPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/IndexPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/InputText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/InputText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/SignInPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/SignInPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/SignUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/SignUpPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/navigation/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/navigation/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/slice/Buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/slice/Buttons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/slice/InputBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/slice/InputBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +37,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -33,8 +50,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -67,10 +82,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.16965227" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.12170706" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />

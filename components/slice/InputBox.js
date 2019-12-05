@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-import { Animated, View, TextInput, StyleSheet } from "react-native";
+import {
+    Animated,
+    View,
+    TextInput,
+    StyleSheet,
+    TouchableOpacity
+} from "react-native";
+import { ActiveColor, FontColor } from "constants/Color";
+import { Ionicons } from "@expo/vector-icons";
 
 class InputBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            animation: new Animated.Value(0)
+            animation: new Animated.Value(0),
+            hideFlag: true
         };
     }
     _fadeIn = value => {
@@ -16,6 +25,7 @@ class InputBox extends Component {
             }).start();
         }
     };
+
     _fadeOut = value => {
         if (!value) {
             Animated.timing(this.state.animation, {
@@ -24,8 +34,15 @@ class InputBox extends Component {
             }).start();
         }
     };
+
+    _hideShow = () => {
+        const { hideFlag } = this.state;
+        this.setState({ hideFlag: !hideFlag });
+    };
+
     render() {
-        const { label, secure, value, onChange } = this.props;
+        const { label, secure, value, onChange, keyboardType } = this.props;
+        const { hideFlag } = this.state;
         const placeholderStyles = {
             top: this.state.animation.interpolate({
                 inputRange: [0.2, 1],
@@ -37,13 +54,13 @@ class InputBox extends Component {
             }),
             color: this.state.animation.interpolate({
                 inputRange: [0, 1],
-                outputRange: ["#aaa", "green"]
+                outputRange: [FontColor, ActiveColor]
             })
         };
         const inputBoxStyles = {
             borderBottomColor: this.state.animation.interpolate({
                 inputRange: [0, 1],
-                outputRange: ["#555", "green"]
+                outputRange: [FontColor, ActiveColor]
             }),
             borderBottomWidth: this.state.animation.interpolate({
                 inputRange: [0, 1],
@@ -62,10 +79,25 @@ class InputBox extends Component {
                         style={styles.textStyle}
                         onChangeText={onChange}
                         value={value}
-                        secureTextEntry={secure}
+                        secureTextEntry={secure && hideFlag}
+                        keyboardType={keyboardType}
                         onFocus={() => this._fadeIn(value)}
                         onBlur={() => this._fadeOut(value)}
                     />
+                    {secure && (
+                        <TouchableOpacity
+                            style={{ position: "absolute", right: 0 }}
+                            onPress={() => {
+                                this._hideShow();
+                            }}
+                        >
+                            <Ionicons
+                                name={`md-${hideFlag ? `lock` : `unlock`}`}
+                                size={22}
+                                color={ActiveColor}
+                            />
+                        </TouchableOpacity>
+                    )}
                 </Animated.View>
             </View>
         );
@@ -80,12 +112,13 @@ const styles = StyleSheet.create({
     placeholderStyle: {
         position: "absolute",
         left: 0,
+        color: FontColor,
         fontSize: 20
     },
     textStyle: {
         height: 26,
         fontSize: 20,
-        color: "#000"
+        color: FontColor
     }
 });
 
