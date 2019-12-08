@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-    AsyncStorage,
-    View,
-    Text,
-    KeyboardAvoidingView
-} from "react-native";
+import { AsyncStorage, View, Text, KeyboardAvoidingView } from "react-native";
 import Buttons from "components/slice/Buttons";
 import { DefaultContainerStyle, DefaultViewStyle } from "constants/Style";
 
@@ -28,7 +23,7 @@ class FinishPage extends Component {
     };
 
     _navSignOut = async () => {
-        await AsyncStorage.clear().then(() =>
+        await AsyncStorage.removeItem("userToken").then(() =>
             this.setState({ userToken: null })
         );
         if (!this.state.userToken) {
