@@ -5,13 +5,15 @@ import { createStackNavigator } from "react-navigation-stack";
 import FirstPage from "./components/navigation/FirstPage";
 import SecondPage from "./components/navigation/SecondPage";
 import LoginNavigator from "./components/navigation/LoginNavigator";
+import ScrollEvent from "./components/scrollevent/ScrollEvent";
 import { Ionicons } from "@expo/vector-icons";
 import { MainColor, ActiveColor } from "./constants/Color";
 
 const TabScreen = createMaterialTopTabNavigator(
     {
         Login: {
-            screen: LoginNavigator,
+            screen: ScrollEvent,
+            // screen: LoginNavigator,
             navigationOptions: {
                 tabBarIcon: ({ focused, tintColor }) => (
                     <Ionicons

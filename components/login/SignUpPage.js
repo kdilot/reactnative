@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-    Alert,
-    KeyboardAvoidingView,
-    StyleSheet,
-    View
-} from "react-native";
+import { Alert, KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import InputBox from "components/slice/InputBox";
 import Buttons from "components/slice/Buttons";
 import { SignUp } from "api";
@@ -34,6 +29,7 @@ class SignUpPage extends Component {
             param.password = password;
             await SignUp(param).then(async res => {
                 if (res.code === 200) {
+                    Alert.alert("가입이 완료되었습니다.");
                     await this.props.navigation.navigate("SignIn");
                 } else if (res.code === 500)
                     Alert.alert("가입에 실패하였습니다.");
