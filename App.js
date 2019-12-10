@@ -1,101 +1,84 @@
 import React from "react";
 import { createAppContainer } from "react-navigation";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
-import FirstPage from "./components/navigation/FirstPage";
-import SecondPage from "./components/navigation/SecondPage";
-import LoginNavigator from "./components/navigation/LoginNavigator";
-import ScrollEvent from "./components/scrollevent/ScrollEvent";
-import { Ionicons } from "@expo/vector-icons";
-import { MainColor, ActiveColor } from "./constants/Color";
+import { StyleSheet } from "react-native";
+import LoginNavigator from "components/navigation/LoginNavigator";
+import SkeletonLoader from "components/skeletonloader/SkeletonLoader";
+import ScrollEvent from "components/scrollevent/ScrollEvent";
+import InfiniteLoop from "./test/InfiniteLoop";
+import HomeScreen from "screens/HomeScreen";
+import ImageLazyScreen from "screens/ImageLazyScreen";
 
-const TabScreen = createMaterialTopTabNavigator(
-    {
-        Login: {
-            screen: ScrollEvent,
-            // screen: LoginNavigator,
-            navigationOptions: {
-                tabBarIcon: ({ focused, tintColor }) => (
-                    <Ionicons
-                        name="md-apps"
-                        size={30}
-                        color={focused ? ActiveColor : "white"}
-                    />
-                )
-            }
-        },
-        Home: {
-            screen: FirstPage,
-            navigationOptions: {
-                tabBarIcon: ({ focused, tintColor }) => (
-                    <Ionicons
-                        name="md-home"
-                        size={30}
-                        color={focused ? ActiveColor : "white"}
-                    />
-                )
-            }
-        },
-        Settings: {
-            screen: SecondPage,
-            navigationOptions: {
-                tabBarIcon: ({ focused, tintColor }) => (
-                    <Ionicons
-                        name="md-alert"
-                        size={30}
-                        color={focused ? ActiveColor : "white"}
-                    />
-                )
-            }
-        }
-    },
-    {
-        tabBarPosition: "top",
-        swipeEnabled: true,
-        animationEnabled: true,
-        tabBarOptions: {
-            showIcon: true,
-            showLabel: false,
-            activeTintColor: ActiveColor,
-            inactiveTintColor: "#F8F8F8",
-            style: {
-                backgroundColor: MainColor
-            },
-            labelStyle: {
-                textAlign: "center"
-            },
-            indicatorStyle: {
-                borderBottomColor: MainColor,
-                borderBottomWidth: 2
-            },
-            tabStyle: {
-                marginBottom: 5
-            }
-        }
-    }
-);
-
-TabScreen.navigationOptions = ({ navigation, screenProps }) => ({
+HomeScreen.navigationOptions = ({ navigation, screenProps }) => ({
     // header: null,
-    headerStyle: {
-        backgroundColor: MainColor
-    },
-    headerTintColor: "#FFFFFF",
-    title: "TabExample",
-    headerTitleContainerStyle: {
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    headerLeft: <Ionicons name="md-menu" size={32} color={"white"} />,
-    headerLeftContainerStyle: { marginLeft: 10 },
-    headerRight: <Ionicons name="md-search" size={32} color={"white"} />,
-    headerRightContainerStyle: { marginRight: 10 }
+    title: "Home",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
+LoginNavigator.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "Login",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
+ScrollEvent.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "Scroll Event",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
+InfiniteLoop.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "Infinite Loop",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
+SkeletonLoader.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "Skeleton Loader",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
+ImageLazyScreen.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "Image Lazy Loading",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
 });
 
 //making a StackNavigator to export as default
 const App = createStackNavigator({
-    TabScreen: {
-        screen: TabScreen
+    Home: {
+        screen: HomeScreen
+    },
+    Login: {
+        screen: LoginNavigator
+    },
+    Infinite: {
+        screen: InfiniteLoop
+    },
+    Skeleton: {
+        screen: SkeletonLoader
+    },
+    ImageLazy: {
+        screen: ImageLazyScreen
+    },
+    Scroll: {
+        screen: ScrollEvent
     }
 });
+
 export default createAppContainer(App);
+
+const styles = StyleSheet.create({
+    naviStyle: {
+        alignItems: "center",
+        justifyContent: "center"
+    }
+});

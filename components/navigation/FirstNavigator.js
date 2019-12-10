@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import SkeletonLoader from "../skeletonloader/SkeletonLoader";
 import LoadingPage from "../skeletonloader/LoadingPage";
 
-export default class FirstPage extends React.Component {
+export default class FirstNavigator extends React.Component {
     render() {
         return (
             <View

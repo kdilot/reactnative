@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, Alert, StyleSheet, Dimensions } from "react-native";
 import { WebView } from "react-native-webview";
+import ProgressView from "components/scrollevent/ProgressView";
+import WebviewLoading from "components/scrollevent/WebviewLoading";
 
 export default class ScrollEvent extends Component {
     constructor(props) {
@@ -30,7 +32,7 @@ export default class ScrollEvent extends Component {
             currentScrollHeight: currentHeight,
             topBar:
                 currentScrollHeight > 0
-                    ? (currentScrollHeight * 100) / maxScrollHeight
+                    ? Math.round((currentScrollHeight * 100) / maxScrollHeight)
                     : topBar
         });
         if (
@@ -47,14 +49,17 @@ export default class ScrollEvent extends Component {
         const { topBar } = this.state;
         return (
             <View style={styles.container}>
+                <ProgressView topBar={topBar} />
                 <View
                     style={{
-                        borderColor: "red",
+                        borderColor: "#E64800",
                         borderBottomWidth: 10,
                         width: `${topBar}%`
                     }}
                 ></View>
                 <WebView
+                    renderLoading={() => <WebviewLoading />}
+                    startInLoadingState={true}
                     onScroll={this._handleScroll}
                     source={{
                         uri: "https://github.com/facebook/react-native"

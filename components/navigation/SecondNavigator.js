@@ -6,7 +6,7 @@ import { Text, View } from "react-native";
 import InfiniteLoop from "../../test/InfiniteLoop";
 import SkeletonLoader from "../skeletonloader/SkeletonLoader";
 
-export default class SecondPage extends React.Component {
+export default class SecondNavigator extends React.Component {
     render() {
         return <SkeletonLoader />;
     }
