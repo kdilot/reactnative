@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, Animated } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 import { Ionicons } from "@expo/vector-icons";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 class ProgressView extends Component {
     constructor(props) {
@@ -44,11 +45,13 @@ class ProgressView extends Component {
                 >
                     {fill => (
                         <Animated.View
-                            style={{ transform: [{ rotateY: spin }] }}
+                            style={{
+                                transform: [{ rotateY: spin }]
+                            }}
                         >
-                            <Ionicons
-                                name="logo-bitcoin"
-                                size={30}
+                            <Icon
+                                name="alpha-r-circle"
+                                size={40}
                                 color={"#D94400"}
                             />
                         </Animated.View>
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         right: 10,
         bottom: 30,
-        zIndex: 10
+        zIndex: 10,
     }
 });
 

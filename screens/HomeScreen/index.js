@@ -29,6 +29,7 @@ export default class HomeScreen extends Component {
                     <ButtonLayout {...this.props} root={"Skeleton"} />
                     <ButtonLayout {...this.props} root={"Scroll"} />
                     <ButtonLayout {...this.props} root={"ImageLazy"} />
+                    <ButtonLayout {...this.props} root={"PinCode"} />
                 </View>
             </ScrollView>
         );

@@ -8,6 +8,7 @@ import ScrollEvent from "components/scrollevent/ScrollEvent";
 import InfiniteLoop from "./test/InfiniteLoop";
 import HomeScreen from "screens/HomeScreen";
 import ImageLazyScreen from "screens/ImageLazyScreen";
+import PinLayout from "screens/PinCodeScreen/PinLayout";
 
 HomeScreen.navigationOptions = ({ navigation, screenProps }) => ({
     // header: null,
@@ -51,6 +52,13 @@ ImageLazyScreen.navigationOptions = ({ navigation, screenProps }) => ({
         ...styles.naviStyle
     }
 });
+PinLayout.navigationOptions = ({ navigation, screenProps }) => ({
+    // header: null,
+    title: "PIN Code",
+    headerTitleStyle: {
+        ...styles.naviStyle
+    }
+});
 
 //making a StackNavigator to export as default
 const App = createStackNavigator({
@@ -71,7 +79,10 @@ const App = createStackNavigator({
     },
     Scroll: {
         screen: ScrollEvent
-    }
+    },
+    PinCode: {
+        screen: PinLayout
+    },
 });
 
 export default createAppContainer(App);
