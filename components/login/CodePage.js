@@ -3,7 +3,8 @@ import { View, StyleSheet, KeyboardAvoidingView, Alert } from "react-native";
 import InputBox from "components/slice/InputBox";
 import Buttons from "components/slice/Buttons";
 import { DefaultContainerStyle, DefaultViewStyle } from "constants/Style";
-import { EmailVal, CodeVal } from "../../api";
+import { EmailVal, CodeVal } from "api";
+import { TextField } from "react-native-material-textfield";
 
 class FinishPage extends Component {
     constructor(props) {
@@ -11,16 +12,16 @@ class FinishPage extends Component {
         this.state = {
             certValue: null,
             veriFlag: false,
-            email: null
+            email: null,
+            error: {}
         };
     }
 
     _sendCode = async () => {
-        // 이곳에 이메일 요청 API 호출
-        // 이곳에 코드 요청 API 호출
         const { email } = this.state;
+        let error = {};
         if (!email) {
-            Alert.alert("입력값을 확인하세요");
+            error["email"] = "이메일 값을 확인하세요...";
         } else {
             this.setState({ veriFlag: true });
             let param = {};
@@ -32,13 +33,14 @@ class FinishPage extends Component {
                     Alert.alert("이메일 인증에 실패하였습니다.");
             });
         }
+        setState({ error });
     };
 
     _verifyCode = async () => {
         const { email, certValue } = this.state;
-        // 이곳에 코드 검증 API 호출
+        let error = {};
         if (!certValue) {
-            Alert.alert("입력값을 확인하세요");
+            error["email"] = "코드 값을 확인하세요...";
         } else {
             let param = {};
             param.email = email;
@@ -50,14 +52,15 @@ class FinishPage extends Component {
                     Alert.alert("코드 인증에 실패하였습니다.");
             });
         }
+        setState({ error });
     };
 
-    componentDidMount() {
-        // this._getToken();
-    }
+    _resetError = () => {
+        this.setState({ error: {} });
+    };
 
     render() {
-        const { certValue, email, veriFlag } = this.state;
+        const { certValue, email, veriFlag, error } = this.state;
         return (
             <KeyboardAvoidingView
                 style={DefaultContainerStyle}
@@ -67,15 +70,24 @@ class FinishPage extends Component {
                 <View style={DefaultViewStyle}>
                     {!veriFlag ? (
                         <View style={styles.veriContainer}>
-                            <View style={{ width: "70%", paddingRight: 10 }}>
-                                <InputBox
+                            <View style={styles.inputLayout}>
+                                <TextField
+                                    label="E-mail"
+                                    keyboardType={"email-address"}
+                                    onFocus={() => this._resetError()}
+                                    error={error.email}
+                                    onChangeText={email =>
+                                        this.setState({ email })
+                                    }
+                                />
+                                {/* <InputBox
                                     label={"E-mail"}
                                     value={email}
                                     keyboardType={"email-address"}
                                     onChange={email => this.setState({ email })}
-                                />
+                                /> */}
                             </View>
-                            <View style={{ width: "30%" }}>
+                            <View style={styles.buttonLayout}>
                                 <Buttons
                                     label={"Send Code"}
                                     onPress={() => this._sendCode()}
@@ -84,17 +96,26 @@ class FinishPage extends Component {
                         </View>
                     ) : (
                         <View style={styles.veriContainer}>
-                            <View style={{ width: "70%", paddingRight: 10 }}>
-                                <InputBox
+                            <View style={styles.inputLayout}>
+                                <TextField
+                                    label="Code"
+                                    keyboardType={"numeric"}
+                                    onFocus={() => this._resetError()}
+                                    error={error.certValue}
+                                    onChangeText={certValue =>
+                                        this.setState({ certValue })
+                                    }
+                                />
+                                {/* <InputBox
                                     label={"Code"}
                                     value={certValue}
                                     keyboardType={"numeric"}
                                     onChange={certValue =>
                                         this.setState({ certValue })
                                     }
-                                />
+                                /> */}
                             </View>
-                            <View style={{ width: "30%" }}>
+                            <View style={styles.buttonLayout}>
                                 <Buttons
                                     label={"Verify"}
                                     onPress={() => this._verifyCode()}
@@ -111,8 +132,15 @@ class FinishPage extends Component {
 const styles = StyleSheet.create({
     veriContainer: {
         flexDirection: "row",
-        height: 200,
-        alignItems: "center"
+        alignItems: "flex-end"
+    },
+    inputLayout: {
+        width: "70%",
+        paddingRight: 10
+    },
+    buttonLayout: {
+        width: "30%",
+        marginBottom: 8
     }
 });
 

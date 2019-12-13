@@ -5,12 +5,16 @@ import {
     KeyboardAvoidingView,
     StyleSheet,
     View,
+    TouchableOpacity
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import InputBox from "components/slice/InputBox";
 import Buttons from "components/slice/Buttons";
+import PasswordHideView from "components/slice/PasswordHideView";
 import { SignIn } from "api";
-import { regEmail } from "constants/Reg";
+import { regEmail, regPassword } from "constants/Reg";
 import { DefaultContainerStyle, DefaultViewStyle } from "constants/Style";
+import { TextField } from "react-native-material-textfield";
 
 class SignInPage extends Component {
     constructor(props) {
@@ -19,7 +23,9 @@ class SignInPage extends Component {
             email: null,
             name: null,
             password: null,
-            conPassword: null
+            conPassword: null,
+            flag: true,
+            error: {}
         };
     }
 
@@ -39,10 +45,11 @@ class SignInPage extends Component {
 
     _navSignIn = () => {
         const { email, password } = this.state;
+        let error = {};
         if (!email || !regEmail.exec(email)) {
-            Alert.alert("이메일 값을 확인하세요");
-        } else if (!password) {
-            Alert.alert("비밀번호 값을 확인하세요");
+            error["email"] = "이메일 값을 확인하세요...";
+        } else if (!password || !regPassword.exec(password)) {
+            error["password"] = "비밀번호 값을 확인하세요...";
         } else {
             let param = {};
             param.email = email;
@@ -55,13 +62,28 @@ class SignInPage extends Component {
                     Alert.alert("로그인에 실패하였습니다.");
             });
         }
+        this.setState({ error });
     };
     _navSignUp = () => {
         this.props.navigation.navigate("CodeCheck");
     };
 
+    _resetError = () => {
+        this.setState({ error: {} });
+    };
+
+    _secureEntry = () => {
+        const { flag } = this.state;
+        return <PasswordHideView flag={flag} onPress={this._hidePassword} />;
+    };
+
+    _hidePassword = () => {
+        const { flag } = this.state;
+        this.setState({ flag: !flag });
+    };
+
     render() {
-        const { email, password } = this.state;
+        const { error, email, password, flag } = this.state;
         return (
             <KeyboardAvoidingView
                 style={DefaultContainerStyle}
@@ -69,7 +91,22 @@ class SignInPage extends Component {
                 enabled
             >
                 <View style={DefaultViewStyle}>
-                    <InputBox
+                    <TextField
+                        label="E-mail"
+                        keyboardType="email-address"
+                        onFocus={() => this._resetError()}
+                        error={error.email}
+                        onChangeText={email => this.setState({ email })}
+                    />
+                    <TextField
+                        label="Password"
+                        onFocus={() => this._resetError()}
+                        error={error.password}
+                        secureTextEntry={flag}
+                        renderRightAccessory={this._secureEntry}
+                        onChangeText={password => this.setState({ password })}
+                    />
+                    {/* <InputBox
                         label={"E-mail"}
                         value={email}
                         keyboardType={"email-address"}
@@ -80,7 +117,7 @@ class SignInPage extends Component {
                         secure={true}
                         value={password}
                         onChange={password => this.setState({ password })}
-                    />
+                    /> */}
                     <View style={styles.btnGroup}>
                         <View style={styles.btnChild}>
                             <Buttons

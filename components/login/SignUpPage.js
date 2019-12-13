@@ -4,6 +4,7 @@ import InputBox from "components/slice/InputBox";
 import Buttons from "components/slice/Buttons";
 import { SignUp } from "api";
 import { DefaultContainerStyle, DefaultViewStyle } from "constants/Style";
+import { TextField } from "react-native-material-textfield";
 
 class SignUpPage extends Component {
     constructor(props) {
@@ -12,16 +13,24 @@ class SignUpPage extends Component {
             email: this.props.navigation.state.params.email,
             name: null,
             password: null,
-            conPassword: null
+            conPassword: null,
+            error: {},
+            pwFlag: true,
+            cpwFlag: true
         };
     }
 
     _navRegister = async () => {
         const { email, name, password, conPassword } = this.state;
-        if (!name || !password || !conPassword) {
-            Alert.alert("입력값을 확인하세요");
+        let error = {};
+        if (!name) {
+            error["name"] = "이름 값을 확인하세요...";
+        } else if (!password) {
+            error["password"] = "패스워드 값을 확인하세요...";
+        } else if (!conPassword) {
+            error["conPassword"] = "확인 패스워드 값을 확인하세요...";
         } else if (password !== conPassword) {
-            Alert.alert("패스워드가 다릅니다.");
+            error["conPassword"] = "패스워드 값이 일치하지 않습니다";
         } else {
             let param = {};
             param.email = email;
@@ -35,10 +44,34 @@ class SignUpPage extends Component {
                     Alert.alert("가입에 실패하였습니다.");
             });
         }
+        this.setState({ error });
+    };
+
+    _resetError = () => {
+        this.setState({ error: {} });
+    };
+
+    _secureEntry = pw => {
+        const { flag } = this.state;
+        return (
+            <PasswordHideView
+                flag={flag}
+                onPress={() => {
+                    this._hidePassword(pw);
+                }}
+            />
+        );
+    };
+
+    _hidePassword = pw => {
+        const { pwFlag, cpwFlag } = this.state;
+        pw
+            ? this.setState({ pwFlag: !pwFlag })
+            : this.setState({ cpwFlag: !cpwFlag });
     };
 
     render() {
-        const { name, password, conPassword } = this.state;
+        const { name, password, conPassword, pwFlag, cpwFlag } = this.state;
         return (
             <KeyboardAvoidingView
                 style={DefaultContainerStyle}
@@ -46,7 +79,32 @@ class SignUpPage extends Component {
                 enabled
             >
                 <View style={DefaultViewStyle}>
-                    <InputBox
+                    <TextField
+                        label="Name"
+                        keyboardType="default"
+                        onFocus={() => this._resetError()}
+                        error={error.email}
+                        onChangeText={email => this.setState({ email })}
+                    />
+                    <TextField
+                        label="Password"
+                        onFocus={() => this._resetError()}
+                        error={error.password}
+                        secureTextEntry={pwFlag}
+                        renderRightAccessory={this._secureEntry(true)}
+                        onChangeText={password => this.setState({ password })}
+                    />
+                    <TextField
+                        label="Confirm Password"
+                        onFocus={() => this._resetError()}
+                        error={error.conPassword}
+                        secureTextEntry={cpwFlag}
+                        renderRightAccessory={this._secureEntry()}
+                        onChangeText={conPassword =>
+                            this.setState({ conPassword })
+                        }
+                    />
+                    {/* <InputBox
                         label={"Name"}
                         value={name}
                         onChange={name => this.setState({ name })}
@@ -62,7 +120,7 @@ class SignUpPage extends Component {
                         secure={true}
                         value={conPassword}
                         onChange={conPassword => this.setState({ conPassword })}
-                    />
+                    /> */}
                     <View style={styles.btnGroup}>
                         <View style={styles.btnChild}>
                             <Buttons

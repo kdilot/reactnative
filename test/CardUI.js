@@ -14,9 +14,10 @@ class SwipeableCard extends Component {
       Xposition: new Animated.Value(0),
       RightText: false,
       LeftText: false,
+      test: false
     };
     this.Card_Opacity = new Animated.Value(1);
-
+    //  this is for test
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => false,
       onMoveShouldSetPanResponder: (evt, gestureState) => true,

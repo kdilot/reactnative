@@ -3,10 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="4863766a-b2b3-4ad2-ac91-f765742d08a2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/scrollevent/ProgressView.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/scrollevent/ProgressView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/scrollevent/ScrollEvent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/scrollevent/ScrollEvent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/CodePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/CodePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/SignInPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/SignInPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/SignUpPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/SignUpPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/scrollevent/ProgressView.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/scrollevent/ScrollEvent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/scrollevent/WebviewLoading.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/slice/Buttons.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/slice/Buttons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Color.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Reg.js" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Reg.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screens/HomeScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/screens/HomeScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/CardUI.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/CardUI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-1660" />
     <option name="y" value="20" />
     <option name="width" value="1400" />
@@ -30,7 +37,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -42,6 +48,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">

@@ -4,9 +4,9 @@ import { createStackNavigator } from "react-navigation-stack";
 import { StyleSheet } from "react-native";
 import LoginNavigator from "components/navigation/LoginNavigator";
 import SkeletonLoader from "components/skeletonloader/SkeletonLoader";
-import ScrollEvent from "components/scrollevent/ScrollEvent";
 import InfiniteLoop from "./test/InfiniteLoop";
 import HomeScreen from "screens/HomeScreen";
+import ScrollEvent from "screens/ScrollEventScreen/ScrollEvent";
 import ImageLazyScreen from "screens/ImageLazyScreen";
 import PinLayout from "screens/PinCodeScreen/PinLayout";
 
@@ -82,7 +82,7 @@ const App = createStackNavigator({
     },
     PinCode: {
         screen: PinLayout
-    },
+    }
 });
 
 export default createAppContainer(App);

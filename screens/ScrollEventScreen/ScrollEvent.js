@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Text, View, Alert, StyleSheet, Dimensions } from "react-native";
 import { WebView } from "react-native-webview";
-import ProgressView from "components/scrollevent/ProgressView";
-import WebviewLoading from "components/scrollevent/WebviewLoading";
+import ProgressView from "./ProgressView";
+import WebviewLoading from "./WebviewLoading";
 
 export default class ScrollEvent extends Component {
     constructor(props) {

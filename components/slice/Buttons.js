@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { BtnColor, FontColor } from "constants/Color";
 
 class Buttons extends Component {
     render() {
@@ -22,11 +21,13 @@ class Buttons extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        backgroundColor: BtnColor,
-        padding: 10
+        backgroundColor: "white",
+        borderWidth: 1,
+        borderColor: "black",
+        padding: 10,
     },
     text: {
-        color: FontColor
+        color: "black"
     }
 });
 

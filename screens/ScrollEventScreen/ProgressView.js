@@ -8,7 +8,6 @@ class ProgressView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: "PPP",
             animation: new Animated.Value(0)
         };
     }
@@ -25,7 +24,7 @@ class ProgressView extends Component {
     }
 
     render() {
-        const { text, animation } = this.state;
+        const { animation } = this.state;
         const { topBar } = this.props;
         const spin = animation.interpolate({
             inputRange: [0, 1],
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         right: 10,
         bottom: 30,
-        zIndex: 10,
+        zIndex: 10
     }
 });
 

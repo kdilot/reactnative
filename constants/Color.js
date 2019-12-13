@@ -1,4 +1,4 @@
-const MainColor = "#0E913D";
+const MainColor = "white";
 const BtnColor = "#006B21";
 const ActiveColor = "#10FF62";
 // const ActiveColor = "#80C241";
