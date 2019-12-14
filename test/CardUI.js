@@ -14,7 +14,7 @@ class SwipeableCard extends Component {
       Xposition: new Animated.Value(0),
       RightText: false,
       LeftText: false,
-      test: false
+      test: true
     };
     this.Card_Opacity = new Animated.Value(1);
     //  this is for test
