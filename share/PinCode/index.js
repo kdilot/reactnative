@@ -13,7 +13,7 @@ export default class PinCode extends Component {
     static defaultProps = {
         maxPin: 6,
         maxCount: 5,
-        status: NEW_PIN,
+        status: NEW_PIN
     };
     constructor(props) {
         super(props);
@@ -22,8 +22,19 @@ export default class PinCode extends Component {
             pinNumber: new Array(0),
             newPinNumber: null, // Async 키 정보
             isCount: 1,
-            status: props.status,
+            status: props.status
         };
+    }
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        this.focusListener = navigation.addListener('didFocus', payload => {
+            // get Async key
+        });
+    }
+
+    componentWillUnmount() {
+        this.focusListener.remove();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -34,21 +45,21 @@ export default class PinCode extends Component {
             this.setState({
                 newPinNumber: confirmPinNumber,
                 status: CONFIRM_PIN,
-                pinNumber: new Array(0),
+                pinNumber: new Array(0)
             });
             this.blockKeyboard(500);
         } else if (nextState.pinNumber.length === maxPin && status === CONFIRM_PIN) {
             if (confirmPinNumber === newPinNumber) {
                 this.setState({
                     status: ACCESS_PIN,
-                    pinNumber: new Array(0),
+                    pinNumber: new Array(0)
                 });
                 this.blockKeyboard(500);
             } else {
                 this.setState({
                     status: NEW_PIN,
                     newPinNumber: null,
-                    pinNumber: new Array(0),
+                    pinNumber: new Array(0)
                 });
                 this.blockKeyboard(1500, 'WRONG CONFIRM PIN NUMBER');
             }
@@ -59,7 +70,7 @@ export default class PinCode extends Component {
             } else {
                 this.setState({
                     pinNumber: new Array(0),
-                    isCount: isCount + 1,
+                    isCount: isCount + 1
                 });
                 maxCount === isCount ? this.blockKeyboard(30000, 'YOU CAN TRY AFTER 30 SEC') : this.blockKeyboard(1500, 'WRONG PIN NUMBER');
             }
@@ -78,7 +89,9 @@ export default class PinCode extends Component {
 
     keyDown = key => {
         const { pinNumber } = this.state;
-        this.setState({ pinNumber: key === 'back' ? pinNumber.pop() : pinNumber.concat(key) });
+        this.setState({
+            pinNumber: key === 'back' ? pinNumber.pop() : pinNumber.concat(key)
+        });
     };
     render() {
         const { pinNumber, status } = this.state;
@@ -117,5 +130,5 @@ PinCode.proptpes = {
     pinNumber: PropTypes.number.array,
     newPinNumber: PropTypes.number.string,
     keyDown: PropTypes.func,
-    blockKeyboard: PropTypes.func,
+    blockKeyboard: PropTypes.func
 };
